@@ -21,12 +21,6 @@ class N1:
 
     def flash(self):
         print("\033[35m[!] 请确保USB双头线已连接\033[0m")
-        input("\033[35m[!] 请按回车键继续\033[0m")
-        print("\033[36m[*] Killing adb server...\033[0m")
-        os.system("adb kill-server")
-        ip = input("\033[34m[*] IP Address: \033[0m")
-        print("\033[36m[*] Connecting to device...\033[0m")
-        os.system(f"adb connect {ip}")
         print("\033[34m[*] Listing devices...\033[0m")
         p = check_output('adb devices -l', shell=True)
         if "p230".encode() not in p:
@@ -37,11 +31,6 @@ class N1:
             os.system("adb shell reboot update")
 
     def udisk(self):
-        print("\033[36m[*] Killing adb server...\033[0m")
-        os.system("adb kill-server")
-        ip = input("\033[34m[*] IP Address: \033[0m")
-        print("\033[36m[*] Connecting to device...\033[0m")
-        os.system(f"adb connect {ip}")
         print("\033[34m[*] Listing devices...\033[0m")
         p = check_output('adb devices -l', shell=True)
         if "p230".encode() not in p:

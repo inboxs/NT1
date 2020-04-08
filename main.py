@@ -35,6 +35,13 @@ def banner():
 
 def choice():
     choose = int(input("选项列表:\n1.T1降级\n2.N1降级\n3.N1进入刷机模式\n4.N1激活U盘启动\n5.退出\n请选择: "))
+    print("\033[36m[*] Killing adb server...\033[0m")
+    os.system("adb kill-server")
+    ip = input("\033[34m[*] IP Address: \033[0m")
+    print("\033[36m[*] Connecting to device...\033[0m")
+    os.system(f"adb connect {ip}")
+    print("\033[36m[*] Remounting device...\033[0m")
+    os.system("adb remount")
     if choose == 1:
         T1().downgrade()
     elif choose == 2:
