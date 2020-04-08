@@ -35,6 +35,8 @@ def banner():
 
 def choice():
     choose = int(input("选项列表:\n1.T1降级\n2.N1降级\n3.N1进入刷机模式\n4.N1激活U盘启动\n5.退出\n请选择: "))
+    if choose == 5:
+        os._exit(0)
     print("\033[36m[*] Killing adb server...\033[0m")
     os.system("adb kill-server")
     ip = input("\033[34m[*] IP Address: \033[0m")
@@ -50,8 +52,6 @@ def choice():
         N1().flash()
     elif choose == 4:
         N1().udisk()
-    elif choose == 5:
-        os._exit(0)
     else:
         print("\033[31m[-] No such option!\033[0m")
 
