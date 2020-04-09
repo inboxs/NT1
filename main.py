@@ -11,13 +11,14 @@ def check_install():
         print("\033[33m[*] HomeBrew is already installed.\033[0m")
     else:
         print("\033[34m[*] Installing HomeBrew...\033[0m")
-        p = Popen("ruby -e \"$(curl -fsSL http://raw.githubusercontent.com/Homebrew/install/master/install)\" > /dev/null 2>&1", shell=True)
+        p = Popen("echo | ruby -e \"$(curl -fsSL http://raw.githubusercontent.com/Homebrew/install/master/install)\" > /dev/null 2>&1", shell=True)
+        p.wait()
         if p.returncode == 0:
             print("\033[32m[+] Install HomeBrew Successfully.\033[0m")
         else:
             print("\033[31m[-] Install HomeBrew Failed.\033[0m")
     print("\033[36m[*] Installing adb tools...\033[0m")
-    p = Popen("brew cask install android-platform-tools > /dev/null 2>&1", shell=True)
+    p = Popen("export HOMEBREW_NO_AUTO_UPDATE=true && brew cask install android-platform-tools > /dev/null 2>&1", shell=True)
     p.wait()
     if p.returncode == 0:
         print("\033[32m[+] Install adb tools Successfully\033[0m")
@@ -37,6 +38,10 @@ def choice():
     choose = int(input("选项列表:\n1.T1降级\n2.N1降级\n3.N1进入刷机模式\n4.N1激活U盘启动\n5.退出\n请选择: "))
     if choose == 5:
         os._exit(0)
+    elif choose < 0 or choose > 5:
+        print("\033[31m[-] No such option!\033[0m")
+        choice()
+
     print("\033[36m[*] Killing adb server...\033[0m")
     os.system("adb kill-server")
     ip = input("\033[34m[*] IP Address: \033[0m")
@@ -52,12 +57,11 @@ def choice():
         N1().flash()
     elif choose == 4:
         N1().udisk()
-    else:
-        print("\033[31m[-] No such option!\033[0m")
 
 
 if __name__ == "__main__":
     banner()
     check_install()
-    choice()
+    while True:
+        choice()
 
