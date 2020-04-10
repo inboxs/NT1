@@ -37,5 +37,5 @@ class N1:
             print("\033[32m[-] Device not find, are you sure it is connected?\033[0m")
             os._exit(1)
         else:
-            print("[+] Rebooting your n1...\033[0m")
+            print("\033[36m[+] Rebooting your n1...\033[0m")
             os.system("adb shell reboot update")
