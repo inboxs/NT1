@@ -47,8 +47,6 @@ def choice():
     ip = input("\033[34m[*] IP Address: \033[0m")
     print("\033[36m[*] Connecting to device...\033[0m")
     os.system(f"adb connect {ip}")
-    print("\033[36m[*] Requiring root permission...\033[0m")
-    os.system("adb root")
     print("\033[36m[*] Remounting device...\033[0m")
     os.system("adb remount")
     if choose == 1:
