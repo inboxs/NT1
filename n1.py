@@ -11,7 +11,7 @@ class N1:
         else:
             print("\033[32m[+] Device find, ready to flash boot...\033[0m")
             print("\033[36m[+] Uploading boot.img...\033[0m")
-            os.system(r"adb push n1\\boot.img /sdcard/boot.img")
+            os.system("adb push n1/boot.img /sdcard/boot.img")
             print("\033[36m[+] Flashing boot.img...\033[0m")
             os.system("adb shell dd if=/sdcard/boot.img of=/dev/block/boot")
             print("\033[36m[+] Removing boot.img...\033[0m")
